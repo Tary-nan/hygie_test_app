@@ -14,8 +14,18 @@ class ContactBuilder extends StatelessWidget {
           previous.runtimeType != current.runtimeType,
       builder: (context, state) {
         return state.map(
-          failure: (_) => const SliverToBoxAdapter(
-            child: Center(child: Text('error')),
+          failure: (_) => SliverToBoxAdapter(
+            child: Center(
+                child: Column(
+              children: [
+                const Text('error'),
+                const SizedBox(height: 20,),
+                TextButton(
+                    onPressed: () =>
+                        context.read<ContactBloc>().add(ContactEvent.fetch()),
+                    child: const Text('Ressayer'))
+              ],
+            )),
           ),
           loading: (_) => const SliverToBoxAdapter(
             child: Center(

@@ -14,12 +14,11 @@ class ContactService extends Service<Error, Contact> {
       var url =
           Uri.https('randomuser.me', '/api', {'results': '$limit'});
       var response = await http.get(url);
-      final _data = ((json.decode(response.body))['results'] as List)
+      final data = ((json.decode(response.body))['results'] as List)
           .map((json) => Contact.fromJson(json))
           .toList();
-      return Right(_data);
+      return Right(data);
     } catch (e) {
-      print(e);
       return Left(Error('Error'));
     }
   }
