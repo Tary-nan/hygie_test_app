@@ -19,7 +19,9 @@ class ContactBuilder extends StatelessWidget {
                 child: Column(
               children: [
                 const Text('error'),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 TextButton(
                     onPressed: () =>
                         context.read<ContactBloc>().add(ContactEvent.fetch()),
